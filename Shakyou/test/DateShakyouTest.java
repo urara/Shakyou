@@ -6,7 +6,7 @@ public class DateShakyouTest {
 
 	@Test
 	public void constractorTest(){
-		//ˆø”–³‚µ
+		//ˆø”–³‚µ‚Å‚â‚Á‚Ä‚İ‚é
 		assertEquals( new Date().toString(),new DateShakyou().toString());
 	}
 }
