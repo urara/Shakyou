@@ -3,9 +3,9 @@ import java.util.Date;
 
 import com.shakyou.TimeZone;
 
-import sun.util.calendar.BaseCalendar;
-import sun.util.calendar.CalendarSystem;
-import sun.util.calendar.CalendarUtils;
+import com.shakyou.BaseCalendar;
+import com.shakyou.CalendarSystem;
+import com.shakyou.CalendarUtils;
 
 public class DateShakyou implements java.io.Serializable, Cloneable{
 
@@ -51,7 +51,7 @@ public class DateShakyou implements java.io.Serializable, Cloneable{
 			month = CalendarUtils.mod(month,12);
 		}
 		BaseCalendar cal = getCalendarSystem(y);
-		cdate = (BaseCalendar.Date) cal.newCalendarDate(TimeZone.getDefaultRef());
+//		cdate = (BaseCalendar.Date) cal.newCalendarDate(TimeZone.getDefaultRef());
 		cdate.setNormalizedDate(y, month + 1, date).setTimeOfDay(hours, min, sec, 0 );
 		getTimeImpl();
 		cdate = null;
@@ -68,12 +68,13 @@ public class DateShakyou implements java.io.Serializable, Cloneable{
 	
 	private long getTimeImpl() {
 		if (cdate != null && !cdate.isNormalized()){
-			normalize();
+//ore			normalize();
 		}
 		return fastTime;
 	}
 
 	//ここから
+	/*ore
 	private final BaseCalendar.Date normalize() {
 		if(cdate == null){
 			BaseCalendar cal = getCalendarSystem(fastTime);
@@ -81,6 +82,7 @@ public class DateShakyou implements java.io.Serializable, Cloneable{
 		
 	}
 
+ore*/
 	//ユリウス歴,グレゴリアン歴の適切なカレンダーを取得する
 	private static BaseCalendar getCalendarSystem(int year) {
 		if (year >= 1582){

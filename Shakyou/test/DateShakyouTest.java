@@ -20,7 +20,9 @@ public class DateShakyouTest {
 	}
 
 	@Test
-	public void@
+	public void methodTest(){
+		assertEquals("" , "");
+	}
 	
 	
 }
