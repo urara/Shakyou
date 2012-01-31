@@ -65,6 +65,43 @@ public class DateShakyou implements java.io.Serializable, Cloneable {
 		this(parse(s));
 	}
 
+	public Object clone() {
+		DateShakyou d = null;
+		try {
+			d = (DateShakyou) super.clone();
+			if (cdate != null) {
+				d.cdate = (BaseCalendar.Date) cdate.clone();
+			}
+		} catch (CloneNotSupportedException e) {
+		} // Won't happen
+		return d;
+	}
+	
+	@Deprecated
+	public static long UTC(int year, int month, int date, int hrs, int min,
+			int sec) {
+		int y = year + 1900;
+		// month is 0-based. So we have to normalize month to support
+		// Long.MAX_VALUE.
+		if (month >= 12) {
+			y += month / 12;
+			month %= 12;
+		} else if (month < 0) {
+			y += CalendarUtils.floorDivide(month, 12);
+			month = CalendarUtils.mod(month, 12);
+		}
+		int m = month + 1;
+		BaseCalendar cal = getCalendarSystem(y);
+		BaseCalendar.Date udate = (BaseCalendar.Date) cal.newCalendarDate(null);
+		udate.setNormalizedDate(y, m, date).setTimeOfDay(hrs, min, sec, 0);
+
+		// Use a Date instance to perform normalization. Its fastTime
+		// is the UTC value after the normalization.
+		DateShakyou d = new DateShakyou(0);
+		d.normalize(udate);
+		return d.fastTime;
+	}
+	
 	@Deprecated
 	public static long parse(String s) {
 		int year = Integer.MIN_VALUE;
@@ -499,6 +536,76 @@ public class DateShakyou implements java.io.Serializable, Cloneable {
 		return fastTime;
 	}
 
+	public void setTime(long time) {
+		fastTime = time;
+		cdate = null;
+	}
+	
+	public boolean before(DateShakyou when) {
+		return getMillisOf(this) < getMillisOf(when);
+	}
+	
+	public boolean after(DateShakyou when) {
+		return getMillisOf(this) > getMillisOf(when);
+	}
+	
+	public boolean equals(Object obj) {
+		return obj instanceof DateShakyou && getTime() == ((DateShakyou) obj).getTime();
+	}
+	
+	static final long getMillisOf(DateShakyou date) {
+		if (date.cdate == null || date.cdate.isNormalized()) {
+			return date.fastTime;
+		}
+		BaseCalendar.Date d = (BaseCalendar.Date) date.cdate.clone();
+		return gcal.getTime(d);
+	}
+	
+	public int compareTo(DateShakyou anotherDate) {
+		long thisTime = getMillisOf(this);
+		long anotherTime = getMillisOf(anotherDate);
+		return (thisTime < anotherTime ? -1 : (thisTime == anotherTime ? 0 : 1));
+	}
+	
+	public int hashCode() {
+		long ht = this.getTime();
+		return (int) ht ^ (int) (ht >> 32);
+	}
+	
+	public String toString() {
+		// "EEE MMM dd HH:mm:ss zzz yyyy";
+		BaseCalendar.Date date = normalize();
+		StringBuilder sb = new StringBuilder(28);
+		int index = date.getDayOfWeek();
+		if (index == gcal.SUNDAY) {
+			index = 8;
+		}
+		convertToAbbr(sb, wtb[index]).append(' '); // EEE
+		convertToAbbr(sb, wtb[date.getMonth() - 1 + 2 + 7]).append(' '); // MMM
+		CalendarUtils.sprintf0d(sb, date.getDayOfMonth(), 2).append(' '); // dd
+
+		CalendarUtils.sprintf0d(sb, date.getHours(), 2).append(':'); // HH
+		CalendarUtils.sprintf0d(sb, date.getMinutes(), 2).append(':'); // mm
+		CalendarUtils.sprintf0d(sb, date.getSeconds(), 2).append(' '); // ss
+		TimeZone zi = date.getZone();
+		if (zi != null) {
+			sb.append(zi.getDisplayName(date.isDaylightTime(), zi.SHORT,
+					Locale.US)); // zzz
+		} else {
+			sb.append("GMT");
+		}
+		sb.append(' ').append(date.getYear()); // yyyy
+		return sb.toString();
+	}
+	
+	private static final StringBuilder convertToAbbr(StringBuilder sb,
+			String name) {
+		sb.append(Character.toUpperCase(name.charAt(0)));
+		sb.append(name.charAt(1)).append(name.charAt(2));
+		return sb;
+	}
+	
+	
 	// ‚±‚±‚©‚ç
 	/*
 	 * ore private final BaseCalendar.Date normalize() { if(cdate == null){

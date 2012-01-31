@@ -24,14 +24,14 @@ import java.io.Serializable;
 import java.lang.ref.SoftReference;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.Date;
+import com.shakyou.DateShakyou;
 import java.util.Hashtable;
-import java.util.Locale;
+import com.shakyou.Locale;
 import java.util.Map;
 import java.util.PropertyPermission;
 import java.util.concurrent.ConcurrentHashMap;
 import sun.security.action.GetPropertyAction;
-import sun.util.TimeZoneNameUtility;
+import com.shakyou.TimeZoneNameUtility;
 //import sun.util.calendar.ZoneInfo;
 import com.shakyou.ZoneInfo;
 import com.shakyou.ZoneInfoFile;
@@ -201,7 +201,7 @@ abstract public class TimeZone implements Serializable, Cloneable {
      * @since 1.4
      */
     public int getOffset(long date) {
-	if (inDaylightTime(new Date(date))) {
+	if (inDaylightTime(new DateShakyou(date))) {
 	    return getRawOffset() + getDSTSavings();
 	}
 	return getRawOffset();
@@ -226,7 +226,7 @@ abstract public class TimeZone implements Serializable, Cloneable {
     int getOffsets(long date, int[] offsets) {
 	int rawoffset = getRawOffset();
 	int dstoffset = 0;
-	if (inDaylightTime(new Date(date))) {
+	if (inDaylightTime(new DateShakyou(date))) {
 	    dstoffset = getDSTSavings();
 	}
 	if (offsets != null) {

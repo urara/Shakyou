@@ -25,8 +25,8 @@
 
 package com.shakyou;
 
-import java.util.Locale;
-import java.util.TimeZone;
+import com.shakyou.Locale;
+import com.shakyou.TimeZone;
 
 /**
  * The <code>BaseCalendar</code> provides basic calendar calculation
