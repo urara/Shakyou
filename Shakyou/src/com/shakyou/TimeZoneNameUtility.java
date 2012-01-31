@@ -34,10 +34,10 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.spi.TimeZoneNameProvider;
+import com.shakyou.TimeZoneNameProvider;
 import com.shakyou.ZoneInfo;
 import com.shakyou.LocaleData;
-import sun.util.resources.OpenListResourceBundle;
+import com.shakyou.OpenListResourceBundle;
 
 /**
  * Utility class that deals with the localized time zone names

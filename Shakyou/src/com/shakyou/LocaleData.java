@@ -48,6 +48,7 @@ import java.util.List;
 import com.shakyou.Locale;
 import com.shakyou.ResourceBundle;
 import java.util.StringTokenizer;
+import com.shakyou.OpenListResourceBundle;
 
 import com.shakyou.LocaleDataMetaInfo;
 

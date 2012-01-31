@@ -35,9 +35,9 @@ import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.util.Hashtable;
 
-import sun.util.BuddhistCalendar;
-import sun.util.calendar.ZoneInfo;
-import sun.util.resources.LocaleData;
+import com.shakyou.BuddhistCalendar;
+import com.shakyou.ZoneInfo;
+import com.shakyou.LocaleData;
 
 /**
  * The <code>Calendar</code> class is an abstract class that provides methods

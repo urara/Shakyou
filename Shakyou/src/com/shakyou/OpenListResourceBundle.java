@@ -43,7 +43,7 @@ package com.shakyou;
 import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.ResourceBundle;
+import com.shakyou.ResourceBundle;
 import java.util.Set;
 import sun.util.ResourceBundleEnumeration;
 

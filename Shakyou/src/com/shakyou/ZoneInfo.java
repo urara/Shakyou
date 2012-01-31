@@ -30,12 +30,11 @@ import java.io.ObjectInputStream;
 import java.lang.ref.SoftReference;
 import java.security.AccessController;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
+import com.shakyou.Locale;
 import java.util.Map;
-import java.util.SimpleTimeZone;
+import com.shakyou.SimpleTimeZone;
 //import java.util.TimeZone;
 import com.shakyou.TimeZone;
 
@@ -84,7 +83,7 @@ public class ZoneInfo extends TimeZone {
     private static final boolean USE_OLDMAPPING;
     static {
       String oldmapping = AccessController.doPrivileged(
-          new sun.security.action.GetPropertyAction("sun.timezone.ids.oldmapping", "false")).toLowerCase(Locale.ROOT);
+          new com.shakyou.GetPropertyAction("sun.timezone.ids.oldmapping", "false")).toLowerCase(Locale.ROOT);
       USE_OLDMAPPING = (oldmapping.equals("yes") || oldmapping.equals("true"));
     }
 
@@ -298,7 +297,7 @@ public class ZoneInfo extends TimeZone {
             if (type != UTC_TIME) {
                 msec -= rawOffset;
             }
-            int dstoffset = tz.inDaylightTime(new Date(msec)) ? tz.getDSTSavings() : 0;
+            int dstoffset = tz.inDaylightTime(new DateShakyou(msec)) ? tz.getDSTSavings() : 0;
             if (offsets != null) {
                 offsets[0] = rawoffset;
                 offsets[1] = dstoffset;
@@ -456,7 +455,7 @@ public class ZoneInfo extends TimeZone {
     /**
      * Queries if the specified date is in Daylight Saving Time.
      */
-    public boolean inDaylightTime(Date date) {
+    public boolean inDaylightTime(DateShakyou date) {
         if (date == null) {
             throw new NullPointerException();
         }

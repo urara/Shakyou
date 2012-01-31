@@ -25,8 +25,8 @@
 
 package com.shakyou;
 
-import java.util.Locale;
-import java.util.TimeZone;
+import com.shakyou.Locale;
+import com.shakyou.TimeZone;
 
 class ImmutableGregorianDate extends BaseCalendar.Date {
     private final BaseCalendar.Date date;

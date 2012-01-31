@@ -11,7 +11,8 @@ public class Main {
 		// TODO Auto-generated method stub
 		DateShakyou date = new DateShakyou();
 		java.util.Date dateorg = new java.util.Date();
-		System.out.println(date.toString() + " " + dateorg.toString() + " " + System.currentTimeMillis());
+		//System.out.println(date.toString() + " " + dateorg.toString() + " " + System.currentTimeMillis());
+		System.out.println(date.toString());
 	}
 
 }

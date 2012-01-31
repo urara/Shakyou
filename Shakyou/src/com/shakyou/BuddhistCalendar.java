@@ -25,13 +25,14 @@
 
 package com.shakyou;
 
-import java.util.GregorianCalendar;
+import com.shakyou.GregorianCalendar;
 import java.util.HashMap;
 import com.shakyou.Locale;
 import java.util.Map;
-import java.util.ResourceBundle;
+import com.shakyou.ResourceBundle;
 import com.shakyou.TimeZone;
-import sun.util.resources.LocaleData;
+import com.shakyou.LocaleData;
+import com.shakyou.Calendar;
 
 public class BuddhistCalendar extends GregorianCalendar {
 

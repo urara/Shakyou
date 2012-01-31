@@ -42,7 +42,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 import com.shakyou.LocaleServiceProvider;
 import com.shakyou.LocaleData;
-import sun.util.resources.OpenListResourceBundle;
+import com.shakyou.OpenListResourceBundle;
 
 /**
  * An instance of this class holds a set of the third party implementations of a particular
