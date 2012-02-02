@@ -2,6 +2,10 @@ package com.shakyou;
 
 //import java.util.Date;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+
 import com.shakyou.TimeZone;
 
 import com.shakyou.BaseCalendar;
@@ -605,6 +609,48 @@ public class DateShakyou implements java.io.Serializable, Cloneable {
 		return sb;
 	}
 	
+	@Deprecated
+	public String toLocaleString() {
+		DateFormat formatter = DateFormat.getDateTimeInstance();
+		return formatter.format(this);
+	}
+	
+	@Deprecated
+	public String toGMTString() {
+		// d MMM yyyy HH:mm:ss 'GMT'
+		long t = getTime();
+		BaseCalendar cal = getCalendarSystem(t);
+		BaseCalendar.Date date = (BaseCalendar.Date) cal.getCalendarDate(
+				getTime(), (TimeZone) null);
+		StringBuilder sb = new StringBuilder(32);
+		CalendarUtils.sprintf0d(sb, date.getDayOfMonth(), 1).append(' '); // d
+		convertToAbbr(sb, wtb[date.getMonth() - 1 + 2 + 7]).append(' '); // MMM
+		sb.append(date.getYear()).append(' '); // yyyy
+		CalendarUtils.sprintf0d(sb, date.getHours(), 2).append(':'); // HH
+		CalendarUtils.sprintf0d(sb, date.getMinutes(), 2).append(':'); // mm
+		CalendarUtils.sprintf0d(sb, date.getSeconds(), 2); // ss
+		sb.append(" GMT"); // ' GMT'
+		return sb.toString();
+	}
+	
+	@Deprecated
+	public int getTimezoneOffset() {
+		int zoneOffset;
+		if (cdate == null) {
+			TimeZone tz = TimeZone.getDefaultRef();
+			if (tz instanceof ZoneInfo) {
+				zoneOffset = ((ZoneInfo) tz).getOffsets(fastTime, null);
+			} else {
+				zoneOffset = tz.getOffset(fastTime);
+			}
+		} else {
+			normalize();
+			zoneOffset = cdate.getZoneOffset();
+		}
+		return -zoneOffset / 60000; // convert to minutes
+	}
+	
+	
 	
 	// ‚±‚±‚©‚ç
 	/*
@@ -736,5 +782,17 @@ public class DateShakyou implements java.io.Serializable, Cloneable {
 			return jcal;
 		}
 		return gcal;
+	}
+	
+	private void writeObject(ObjectOutputStream s) throws IOException {
+		s.writeLong(getTimeImpl());
+	}
+
+	/**
+	 * Reconstitute this object from a stream (i.e., deserialize it).
+	 */
+	private void readObject(ObjectInputStream s) throws IOException,
+			ClassNotFoundException {
+		fastTime = s.readLong();
 	}
 }
