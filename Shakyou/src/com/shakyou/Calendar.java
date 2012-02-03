@@ -31,13 +31,9 @@ import java.security.PermissionCollection;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 import java.security.ProtectionDomain;
-import com.shakyou.DateFormat;
-import java.text.DateFormatSymbols;
+import java.util.HashMap;
 import java.util.Hashtable;
-
-import com.shakyou.BuddhistCalendar;
-import com.shakyou.ZoneInfo;
-import com.shakyou.LocaleData;
+import java.util.Map;
 
 /**
  * The <code>Calendar</code> class is an abstract class that provides methods
@@ -1058,8 +1054,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #setTime(Date)
      * @see #getTimeInMillis()
      */
-    public final Date getTime() {
-        return new Date(getTimeInMillis());
+    public final DateShakyou getTime() {
+        return new DateShakyou(getTimeInMillis());
     }
 
     /**
@@ -1073,7 +1069,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #getTime()
      * @see #setTimeInMillis(long)
      */
-    public final void setTime(Date date) {
+    public final void setTime(DateShakyou date) {
         setTimeInMillis(date.getTime());
     }
 

@@ -26,8 +26,6 @@
 package com.shakyou;
 
 import java.lang.Cloneable;
-import java.util.Locale;
-import com.shakyou.TimeZone;
 
 /**
  * The <code>CalendarDate</code> class represents a specific instant

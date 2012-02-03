@@ -25,9 +25,6 @@
 
 package com.shakyou;
 
-import java.util.Locale;
-import com.shakyou.TimeZone;
-
 /**
  * The <code>AbstractCalendar</code> class provides a framework for
  * implementing a concrete calendar system.

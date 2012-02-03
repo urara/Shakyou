@@ -25,9 +25,6 @@
 
 package com.shakyou;
 
-import com.shakyou.Locale;
-import com.shakyou.TimeZone;
-
 /**
  * The <code>BaseCalendar</code> provides basic calendar calculation
  * functions to support the Julian, Gregorian, and Gregorian-based

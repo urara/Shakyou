@@ -9,7 +9,6 @@ package com.shakyou;
 
 import java.io.InvalidObjectException;
 import java.io.Serializable;
-import com.shakyou.CharacterIterator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;

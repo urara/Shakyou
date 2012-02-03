@@ -21,17 +21,11 @@
 package com.shakyou;
 
 import java.io.InvalidObjectException;
-import java.text.spi.DateFormatProvider;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.text.NumberFormat;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
-import java.util.MissingResourceException;
-import java.util.ResourceBundle;
-import java.util.TimeZone;
-import java.util.spi.LocaleServiceProvider;
-import sun.util.LocaleServiceProviderPool;
+//import java.util.spi.LocaleServiceProvider;
+//import sun.util.LocaleServiceProviderPool;
 
 /**
  * DateFormat is an abstract class for date/time formatting subclasses which
@@ -271,10 +265,10 @@ public abstract class DateFormat extends Format {
     public final StringBuffer format(Object obj, StringBuffer toAppendTo,
                                      FieldPosition fieldPosition)
     {
-        if (obj instanceof Date)
-            return format( (Date)obj, toAppendTo, fieldPosition );
+        if (obj instanceof DateShakyou)
+            return format( (DateShakyou)obj, toAppendTo, fieldPosition );
         else if (obj instanceof Number)
-            return format( new Date(((Number)obj).longValue()),
+            return format( new DateShakyou(((Number)obj).longValue()),
                           toAppendTo, fieldPosition );
         else 
             throw new IllegalArgumentException("Cannot format given Object as a Date");
@@ -302,7 +296,7 @@ public abstract class DateFormat extends Format {
      * pattern character 'z'.
      * @return the string buffer passed in as toAppendTo, with formatted text appended.
      */
-    public abstract StringBuffer format(Date date, StringBuffer toAppendTo,
+    public abstract StringBuffer format(DateShakyou date, StringBuffer toAppendTo,
                                         FieldPosition fieldPosition);
 
     /**
@@ -310,7 +304,7 @@ public abstract class DateFormat extends Format {
      * @param date the time value to be formatted into a time string.
      * @return the formatted time string.
      */
-    public final String format(Date date)
+    public final String format(DateShakyou date)
     {
         return format(date, new StringBuffer(),
 		      DontCareFieldPosition.INSTANCE).toString();
@@ -328,10 +322,10 @@ public abstract class DateFormat extends Format {
      * @exception ParseException if the beginning of the specified string
      *            cannot be parsed.
      */
-    public Date parse(String source) throws ParseException
+    public DateShakyou parse(String source) throws ParseException
     {
         ParsePosition pos = new ParsePosition(0);
-        Date result = parse(source, pos);
+        DateShakyou result = parse(source, pos);
         if (pos.index == 0)
             throw new ParseException("Unparseable date: \"" + source + "\"" ,
                 pos.errorIndex);
@@ -358,7 +352,7 @@ public abstract class DateFormat extends Format {
      *
      * @return      A Date, or null if the input could not be parsed
      */
-    public abstract Date parse(String source, ParsePosition pos);
+    public abstract DateShakyou parse(String source, ParsePosition pos);
 
     /**
      * Parses text from a string to produce a <code>Date</code>.
