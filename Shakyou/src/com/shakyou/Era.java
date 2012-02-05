@@ -25,8 +25,8 @@
 
 package com.shakyou;
 
-import com.shakyou.Locale;
-import com.shakyou.TimeZone;
+import java.util.Locale;
+//import java.util.TimeZone;
 
 /**
  * The class <code>Era</code> represents a calendar era that defines a

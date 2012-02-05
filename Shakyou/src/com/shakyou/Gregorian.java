@@ -25,7 +25,11 @@
 
 package com.shakyou;
 
-import com.shakyou.TimeZone;
+
+//import java.util.TimeZone;
+
+import com.shakyou.BaseCalendar.Date;
+
 
 /**
  * Gregorian calendar implementation.
@@ -36,12 +40,12 @@ import com.shakyou.TimeZone;
 
 public class Gregorian extends BaseCalendar {
 
-    static class DateShakyou extends BaseCalendar.Date {
-        protected DateShakyou() {
+    static class Date extends BaseCalendar.Date {
+        protected Date() {
             super();
         }
 
-        protected DateShakyou(TimeZone zone) {
+        protected Date(TimeZone zone) {
             super(zone);
         }
 
@@ -61,27 +65,27 @@ public class Gregorian extends BaseCalendar {
         return "gregorian";
     }
 
-    public DateShakyou getCalendarDate() {
+    public Date getCalendarDate() {
         return getCalendarDate(System.currentTimeMillis(), newCalendarDate());
     }
 
-    public DateShakyou getCalendarDate(long millis) {
+    public Date getCalendarDate(long millis) {
         return getCalendarDate(millis, newCalendarDate());
     }
 
-    public DateShakyou getCalendarDate(long millis, CalendarDate date) {
-        return (DateShakyou) super.getCalendarDate(millis, date);
+    public Date getCalendarDate(long millis, CalendarDate date) {
+        return (Date) super.getCalendarDate(millis, date);
     }
 
-    public DateShakyou getCalendarDate(long millis, TimeZone zone) {
+    public Date getCalendarDate(long millis, TimeZone zone) {
         return getCalendarDate(millis, newCalendarDate(zone));
     }
 
-    public DateShakyou newCalendarDate() {
-        return new DateShakyou();
+    public Date newCalendarDate() {
+        return new Date();
     }
 
-    public DateShakyou newCalendarDate(TimeZone zone) {
-        return new DateShakyou(zone);
+    public Date newCalendarDate(TimeZone zone) {
+        return new Date(zone);
     }
 }

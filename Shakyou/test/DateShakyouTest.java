@@ -1,16 +1,16 @@
 import org.junit.Test;
 
-import com.shakyou.DateShakyou;
+import com.shakyou.Date;
 
 import static org.junit.Assert.*;
-import java.util.Date;
+//import java.util.Date;
 
 public class DateShakyouTest {
 
 	@Test
 	public void constractorTest(){
 		//ˆø”–³‚µ‚Å‚â‚Á‚Ä‚İ‚é
-		assertEquals( new Date().toString(),new DateShakyou().toString());
+		assertEquals( new Date().toString(),new java.util.Date().toString());
 		
 		//ˆø”ƒAƒŠ‚Å‚â‚Á‚Ä‚İ‚é
 		//“ú‚É‚¿‚Ü‚Å

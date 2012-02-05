@@ -24,16 +24,19 @@
  */
 
 package com.shakyou;
+//newCalendarDate(Timezone)のtimezoneを自分のに変える(インターフェースだからやらなくても・・・)
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 import java.util.Set;
-import com.shakyou.TimeZone;
+//import java.util.TimeZone;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
+//import sun.util.calendar.LocalGregorianCalendar;
 
 /**
  * <code>CalendarSystem</code> is an abstract class that defines the

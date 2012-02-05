@@ -23,10 +23,12 @@ package com.shakyou;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.IOException;
-import com.shakyou.CalendarSystem;
-import com.shakyou.CalendarUtils;
-import com.shakyou.BaseCalendar;
-import com.shakyou.Gregorian;
+//import java.util.GregorianCalendar;
+
+//import sun.util.calendar.CalendarSystem;
+//import sun.util.calendar.CalendarUtils;
+//import sun.util.calendar.BaseCalendar;
+//import sun.util.calendar.Gregorian;
 
 /**
  * <code>SimpleTimeZone</code> is a concrete subclass of <code>TimeZone</code>
@@ -829,7 +831,7 @@ public class SimpleTimeZone extends TimeZone {
      * @return true if daylight saving time is in effective at the
      * given date; false otherwise.
      */
-    public boolean inDaylightTime(DateShakyou date)
+    public boolean inDaylightTime(Date date)
     {
 	return (getOffset(date.getTime()) != rawOffset);
     }

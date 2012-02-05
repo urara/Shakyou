@@ -22,16 +22,17 @@ package com.shakyou;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import com.shakyou.Calendar;
+//import java.util.Calendar;
+import java.util.Locale;
 
-import com.shakyou.BaseCalendar;
-import com.shakyou.CalendarDate;
-import com.shakyou.CalendarSystem;
-import com.shakyou.CalendarUtils;
-import com.shakyou.Era;
-import com.shakyou.Gregorian;
-import com.shakyou.JulianCalendar;
-import com.shakyou.ZoneInfo;
+//import sun.util.calendar.BaseCalendar;
+//import sun.util.calendar.CalendarDate;
+//import sun.util.calendar.CalendarSystem;
+import sun.util.calendar.CalendarUtils;
+//import sun.util.calendar.Era;
+//import sun.util.calendar.Gregorian;
+//import sun.util.calendar.JulianCalendar;
+//import sun.util.calendar.ZoneInfo;
 
 /**
  * <code>GregorianCalendar</code> is a concrete subclass of
@@ -692,7 +693,7 @@ public class GregorianCalendar extends Calendar {
      *
      * @param date the given Gregorian cutover date.
      */
-    public void setGregorianChange(DateShakyou date) {
+    public void setGregorianChange(Date date) {
 	long cutoverTime = date.getTime();
 	if (cutoverTime == gregorianCutover) {
 	    return;
@@ -742,8 +743,8 @@ public class GregorianCalendar extends Calendar {
      *
      * @return the Gregorian cutover date for this <code>GregorianCalendar</code> object.
      */
-    public final DateShakyou getGregorianChange() {
-        return new DateShakyou(gregorianCutover);
+    public final Date getGregorianChange() {
+        return new Date(gregorianCutover);
     }
 
     /**

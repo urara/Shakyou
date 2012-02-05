@@ -17,8 +17,8 @@
  *   Taligent is a registered trademark of Taligent, Inc.
  *
  */
+
 package com.shakyou;
-//package java.util;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -31,9 +31,17 @@ import java.security.PermissionCollection;
 import java.security.PrivilegedActionException;
 import java.security.PrivilegedExceptionAction;
 import java.security.ProtectionDomain;
+import java.text.DateFormat;
+import java.text.DateFormatSymbols;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Locale;
 import java.util.Map;
+import java.util.ResourceBundle;
+
+//import sun.util.BuddhistCalendar;
+//import sun.util.calendar.ZoneInfo;
+import sun.util.resources.LocaleData;
 
 /**
  * The <code>Calendar</code> class is an abstract class that provides methods
@@ -998,7 +1006,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
 	// instance.
 	if ("th".equals(aLocale.getLanguage())
 	    && ("TH".equals(aLocale.getCountry()))) {
-	    return new com.shakyou.BuddhistCalendar(zone, aLocale);
+	    return new BuddhistCalendar(zone, aLocale);
 	} else if ("JP".equals(aLocale.getVariant())
 		   && "JP".equals(aLocale.getCountry())
 		   && "ja".equals(aLocale.getLanguage())) {
@@ -1054,8 +1062,8 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #setTime(Date)
      * @see #getTimeInMillis()
      */
-    public final DateShakyou getTime() {
-        return new DateShakyou(getTimeInMillis());
+    public final Date getTime() {
+        return new Date(getTimeInMillis());
     }
 
     /**
@@ -1069,7 +1077,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      * @see #getTime()
      * @see #setTimeInMillis(long)
      */
-    public final void setTime(DateShakyou date) {
+    public final void setTime(Date date) {
         setTimeInMillis(date.getTime());
     }
 
@@ -1374,6 +1382,7 @@ public abstract class Calendar implements Serializable, Cloneable, Comparable<Ca
      *        if <code>locale</code> is null
      * @since 1.6
      */
+    
     public String getDisplayName(int field, int style, Locale locale) {
 	if (!checkDisplayNameParams(field, style, ALL_STYLES, LONG, locale,
 				    ERA_MASK|MONTH_MASK|DAY_OF_WEEK_MASK|AM_PM_MASK)) {
